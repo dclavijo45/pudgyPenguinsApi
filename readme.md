@@ -6,8 +6,6 @@ Get information about [flask]
 Get information about [PudgyPenguins]
 
 
-You can install and run:
-
 Configure database
 ---------------
 
