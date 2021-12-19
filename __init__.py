@@ -31,7 +31,7 @@ def notFound(e):
 def methodNotAllowed(e):
     return redirect("/api/v1/")
 
-# Fix SSL in Heroku (DNS)
+# Fix SSL in Heroku dns
 @app.before_request
 def fixSslHeroku():
     is_secure = True if request.headers.get('X-Forwarded-Proto', 'http') == 'https' else False
