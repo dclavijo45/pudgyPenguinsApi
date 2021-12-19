@@ -19,7 +19,7 @@ STATUS = [
 ]
 
 #MySQL
-MYSQL_HOST = env('mysql_host', 'localhost')
-MYSQL_USER = env('mysql_user', 'pwd')
-MYSQL_PASSWORD = env('mysql_password', 'pwd')
-MYSQL_DB = env('mysql_db', 'db_pudgy_penguins')
+MYSQL_HOST = env('MYSQL_HOST', 'localhost')
+MYSQL_USER = env('MYSQL_USER', 'pwd')
+MYSQL_PASSWORD = env('MYSQL_PASSWORD', 'pwd')
+MYSQL_DB = env('MYSQL_DB', 'db_pudgy_penguins')
