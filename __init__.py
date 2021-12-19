@@ -34,9 +34,10 @@ def methodNotAllowed(e):
 # Fix SSL in Heroku (DNS)
 @app.before_request
 def fixSslHeroku():
-    print("HEADERS :")
-    print(request.headers.get('X-Forwarded-Proto', 'http'))
-    print("-----------")
+    is_secure = True if request.headers.get('X-Forwarded-Proto', 'http') == 'https' else False
+    if not is_secure:
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
 
 # Api v1
 app.add_url_rule(api_v1["api"], view_func=api_v1["api_controller"])
