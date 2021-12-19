@@ -1,6 +1,6 @@
 from config import SECRET_KEY, MYSQL_USER,MYSQL_PASSWORD, MYSQL_DB, MYSQL_HOST
 from routes.server import server_v1
-from flask import Flask, redirect
+from flask import Flask, redirect, request
 from routes.api import api_v1
 from flask_cors import CORS
 
@@ -30,6 +30,13 @@ def notFound(e):
 @app.errorhandler(405)
 def methodNotAllowed(e):
     return redirect("/api/v1/")
+
+# Fix SSL in Heroku (DNS)
+@app.before_request
+def before_request():
+    if not request.is_secure:
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
 
 # Api v1
 app.add_url_rule(api_v1["api"], view_func=api_v1["api_controller"])
