@@ -34,7 +34,7 @@ def methodNotAllowed(e):
 # Fix SSL in Heroku (DNS)
 @app.before_request
 def before_request():
-    if not request.is_secure:
+    if 'http://' in request.url:
         url = request.url.replace('http://', 'https://', 1)
         return redirect(url, code=301)
 
